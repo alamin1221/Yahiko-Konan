@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#0b0612">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="mobile-web-app-capable" content="yes">
+<title>100 Days — YahiKo × KonaN</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,500&family=Hind+Siliguri:wght@400;500;600&family=Manrope:wght@300;400;500;600;700&family=Noto+Serif+JP:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Preloader -->
+<div class="preloader" id="preloader">
+  <div class="preloader-inner">
+    <div class="preloader-sakura">🌸</div>
+    <p class="preloader-jp">つづきを読む</p>
+    <p class="preloader-text">Loading your story...</p>
+    <div class="preloader-bar"><div class="preloader-fill"></div></div>
+  </div>
+</div>
+
+<!-- Noise overlay -->
+<div class="noise-overlay"></div>
+
+<!-- Sparkle trail -->
+<div class="sparkle-trail" id="sparkleTrail"></div>
+
+<!-- Sakura tree left -->
+<div class="sakura-tree sakura-tree--left" id="treeLeft">
+  <svg viewBox="0 0 400 900" xmlns="http://www.w3.org/2000/svg">
+    <path d="M180 900 Q175 700 140 600 Q110 520 80 480 Q60 460 50 420 Q40 380 60 340 Q80 300 120 280 Q100 240 90 200 Q80 160 100 130 Q120 100 160 90 Q180 80 200 100 Q210 80 230 70 Q260 60 280 80 Q300 100 290 130 Q280 160 260 190 Q250 210 260 240 Q240 260 220 280" fill="none" stroke="rgba(139,90,60,0.45)" stroke-width="12" stroke-linecap="round"/>
+    <path d="M140 600 Q120 580 80 560 Q50 550 30 530 Q10 510 20 490" fill="none" stroke="rgba(139,90,60,0.35)" stroke-width="7" stroke-linecap="round"/>
+    <path d="M160 90 Q140 60 120 40 Q100 20 80 30 Q60 40 70 60" fill="none" stroke="rgba(139,90,60,0.35)" stroke-width="6" stroke-linecap="round"/>
+  </svg>
+  <div class="sakura-blossoms" id="blossomsLeft"></div>
+</div>
+
+<!-- Sakura tree right -->
+<div class="sakura-tree sakura-tree--right" id="treeRight">
+  <svg viewBox="0 0 400 900" xmlns="http://www.w3.org/2000/svg">
+    <path d="M220 900 Q225 700 260 600 Q290 520 320 480 Q340 460 350 420 Q360 380 340 340 Q320 300 280 280 Q300 240 310 200 Q320 160 300 130 Q280 100 240 90 Q220 80 200 100 Q190 80 170 70 Q140 60 120 80 Q100 100 110 130 Q120 160 140 190 Q150 210 140 240 Q160 260 180 280" fill="none" stroke="rgba(139,90,60,0.45)" stroke-width="12" stroke-linecap="round"/>
+    <path d="M260 600 Q280 580 320 560 Q350 550 370 530 Q390 510 380 490" fill="none" stroke="rgba(139,90,60,0.35)" stroke-width="7" stroke-linecap="round"/>
+  </svg>
+  <div class="sakura-blossoms" id="blossomsRight"></div>
+</div>
+
+<!-- Falling petals global -->
+<div class="sakura-fall-layer" id="sakuraFallLayer"></div>
+
+<!-- Float hearts -->
+<div class="float-layer" id="floatLayer"></div>
+
+<!-- Burst layer -->
+<div class="burst-layer" id="burstLayer"></div>
+
+<!-- Music -->
+<div class="music-area" id="musicArea">
+  <div class="visualizer" id="visualizer">
+    <span></span><span></span><span></span><span></span><span></span>
+  </div>
+  <button class="music-btn" id="musicBtn" aria-label="Play music">
+    <svg class="music-icon music-icon--play" viewBox="0 0 24 24" fill="none"><path d="M6 4L19 12L6 20V4Z" fill="currentColor"/></svg>
+    <svg class="music-icon music-icon--pause" viewBox="0 0 24 24" fill="none" style="display:none"><rect x="5" y="4" width="4" height="16" rx="1" fill="currentColor"/><rect x="15" y="4" width="4" height="16" rx="1" fill="currentColor"/></svg>
+    <span class="music-ring"></span>
+    <span class="music-ring music-ring--2"></span>
+  </button>
+</div>
+<audio id="bgMusic" loop preload="auto" muted><source src="music.mp3" type="audio/mpeg"></audio>
+
+<!-- ===================== OPENING ===================== -->
+<section class="screen opening" id="opening">
+  <div class="opening-inner">
+    <div class="torii-icon">⛩️</div>
+    <div class="opening-jp">百日記念</div>
+    <p class="eyebrow reveal" style="--d:0s">A LITTLE SOMETHING FOR</p>
+    <h1 class="opening-name reveal" style="--d:0.1s">KonaN</h1>
+    <div class="sakura-line"><span></span>🌸<span></span></div>
+    <p class="opening-from reveal" style="--d:0.15s">From your YahiKo 🤍</p>
+    <button class="envelope" id="envelope" aria-label="Open the letter">
+      <span class="envelope-glow"></span>
+      <svg class="envelope-svg" viewBox="0 0 220 160" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="envBody" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#2a1a2e"/><stop offset="100%" stop-color="#1a0f20"/></linearGradient>
+          <linearGradient id="envFlap" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#f2a6cf"/><stop offset="100%" stop-color="#d48fb8"/></linearGradient>
+        </defs>
+        <rect x="10" y="35" width="200" height="115" rx="14" fill="url(#envBody)" stroke="rgba(242,166,207,0.2)" stroke-width="1"/>
+        <path class="env-flap" d="M10 49 L110 118 L210 49 L210 40 Q210 35 205 35 L15 35 Q10 35 10 40 Z" fill="url(#envFlap)"/>
+        <path d="M10 49 L110 118 L210 49" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
+        <circle cx="110" cy="82" r="12" fill="#f2c6de"/>
+        <text x="110" y="87" text-anchor="middle" font-size="14" fill="#5c3766" font-family="serif">Y+K</text>
+        <rect x="35" y="50" width="60" height="80" rx="3" fill="#f6ecf9" opacity="0.7"/>
+        <line x1="42" y1="62" x2="88" y2="62" stroke="rgba(180,135,224,0.3)" stroke-width="1"/>
+        <line x1="42" y1="72" x2="82" y2="72" stroke="rgba(180,135,224,0.3)" stroke-width="1"/>
+        <line x1="42" y1="82" x2="76" y2="82" stroke="rgba(180,135,224,0.3)" stroke-width="1"/>
+      </svg>
+    </button>
+    <p class="opening-cta reveal" style="--d:0.2s">この手紙を開いて ✨</p>
+    <p class="opening-cta-sub reveal" style="--d:0.25s">Open this little memory</p>
+  </div>
+  <div class="opening-branch">🌸 🌸 🌸</div>
+</section>
+
+<!-- ===================== MAIN STORY ===================== -->
+<main class="story" id="story" hidden>
+
+  <div class="story-chrome">
+    <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+    <div class="section-counter"><span id="counterCurrent">01</span> / <span id="counterTotal">06</span></div>
+  </div>
+
+  <div class="countdown" id="countdown">
+    <span class="countdown-jp">百日</span>
+    <span class="countdown-num" id="cdDays">0</span><span class="countdown-label">d</span>
+    <span class="countdown-sep">:</span>
+    <span class="countdown-num" id="cdHours">0</span><span class="countdown-label">h</span>
+    <span class="countdown-sep">:</span>
+    <span class="countdown-num" id="cdMins">0</span><span class="countdown-label">m</span>
+  </div>
+
+  <div class="panel-viewport" id="panelViewport">
+
+  <!-- 1: 100 Days -->
+  <section class="panel" data-panel="0">
+    <div class="panel-inner panel-center">
+      <div class="days-glow"></div>
+      <div class="days-number" id="daysNumber">0</div>
+      <div class="days-jp">百日</div>
+      <p class="days-label">DAYS OF TALKING 🫶</p>
+      <div class="days-divider"><span></span><span class="days-divider-petal">🌸</span><span></span></div>
+      <p class="days-range" id="daysRange"></p>
+      <p class="days-quote tw-scroll" data-tw="100 days ago, we were just two people who didn't know that a simple introduction could turn into such a beautiful friendship."></p>
+    </div>
+  </section>
+
+  <!-- 2: How it all started -->
+  <section class="panel" data-panel="1">
+    <div class="panel-inner">
+      <div class="glass-card">
+        <p class="card-eyebrow">OUR STORY — 物語</p>
+        <h2 class="card-title">How It All Started</h2>
+        <div class="bn-text">
+          <p class="tw-scroll" data-tw="সত্যি বলতে, আমাদের গল্পটা খুব সাধারণ একটা হাই-হ্যালো থেকে শুরু হয়নি। 😄"></p>
+          <p class="tw-scroll" data-tw="আমাদের পরিচয় হয়েছিল তোমার কাজিনের মাধ্যমে।"></p>
+          <p class="tw-scroll" data-tw="তখন হয়তো কেউ ভাবেনি যে সেই ছোট্ট একটা পরিচয় একদিন এতটা সুন্দর friendship-এ পরিণত হবে।"></p>
+          <p class="tw-scroll" data-tw="প্রথমে তুমি ছিলে শুধু পরিচিত একজন।"></p>
+          <p class="tw-scroll" data-tw="তারপর ধীরে ধীরে কথা বাড়তে থাকলো — random topic, হাসাহাসি, পাগলামি, কখনো serious কথা..."></p>
+          <p class="tw-scroll" data-tw="আর কখন যে তুমি একজন অনেক close মানুষ হয়ে গেলে, সেটা হয়তো আমরা নিজেরাও বুঝিনি। 🥹"></p>
+          <p class="tw-scroll" data-tw="সবচেয়ে মজার ব্যাপার হলো, তোমার কাজিনের সাথে হয়তো এখন আর আগের মতো কথা হয় না, কিন্তু তোমার সাথে আমার যে সম্পর্কটা তৈরি হয়েছে সেটা নিজের মতো করে একটা আলাদা জায়গা করে নিয়েছে।"></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3: Memory Gallery -->
+  <section class="panel" data-panel="2">
+    <div class="panel-inner panel-inner--wide">
+      <p class="card-eyebrow">MEMORY GALLERY — 回憶</p>
+      <h2 class="card-title">Little Pieces of Us</h2>
+      <div class="gallery" id="gallery">
+        <figure class="gallery-item" data-img="konan.jpg">
+          <div class="gallery-item-glow"></div>
+          <img src="konan.jpg" alt="KonaN's Photo" loading="lazy" onerror="this.parentElement.classList.add('gallery-item--empty')">
+          <figcaption>KonaN 🌸</figcaption>
+        </figure>
+        <figure class="gallery-item" data-img="yahiko.jpg">
+          <div class="gallery-item-glow"></div>
+          <img src="yahiko.jpg" alt="YahiKo's Photo" loading="lazy" onerror="this.parentElement.classList.add('gallery-item--empty')">
+          <figcaption>YahiKo 🤍</figcaption>
+        </figure>
+        <figure class="gallery-item" data-img="memory1.jpg">
+          <div class="gallery-item-glow"></div>
+          <img src="memory1.jpg" alt="Our Memory" loading="lazy" onerror="this.parentElement.classList.add('gallery-item--empty')">
+          <figcaption>Our Memory 💗</figcaption>
+        </figure>
+        <figure class="gallery-item" data-img="memory2.jpg">
+          <div class="gallery-item-glow"></div>
+          <img src="memory2.jpg" alt="Favorite Moment" loading="lazy" onerror="this.parentElement.classList.add('gallery-item--empty')">
+          <figcaption>Favorite Moment 🩷</figcaption>
+        </figure>
+        <figure class="gallery-item" data-img="memory3.jpg">
+          <div class="gallery-item-glow"></div>
+          <img src="memory3.jpg" alt="Random Moment" loading="lazy" onerror="this.parentElement.classList.add('gallery-item--empty')">
+          <figcaption>Random Moment ✨</figcaption>
+        </figure>
+        <figure class="gallery-item" data-img="memory4.jpg">
+          <div class="gallery-item-glow"></div>
+          <img src="memory4.jpg" alt="Future Memory" loading="lazy" onerror="this.parentElement.classList.add('gallery-item--empty')">
+          <figcaption>Future Memory 🫶</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4: A Little Message -->
+  <section class="panel" data-panel="3">
+    <div class="panel-inner">
+      <div class="glass-card">
+        <p class="card-eyebrow">A LITTLE MESSAGE — 手紙 💌</p>
+        <div class="bn-text">
+          <p class="salutation tw-scroll" data-tw="Dear KonaN,"></p>
+          <p class="tw-scroll" data-tw="100 দিন আগে হয়তো তুমি আমার কাছে শুধু একজন পরিচিত মানুষ ছিলে।"></p>
+          <p class="tw-scroll" data-tw="কিন্তু এখন তুমি এমন একজন মানুষ, যার সাথে কথা বলা আমার দিনের একটা সুন্দর অংশ হয়ে গেছে। 🫶"></p>
+          <p class="tw-scroll" data-tw="এই 100 দিনে আমরা কত কী নিয়ে কথা বলেছি, কত random conversation করেছি, কতবার হেসেছি — সবকিছু হয়তো মনে থাকবে না।"></p>
+          <p class="tw-scroll" data-tw="কিন্তু একটা জিনিস মনে থাকবে..."></p>
+          <p class="tw-scroll" data-tw="একটা ছোট্ট পরিচয় কীভাবে একটা সুন্দর friendship-এ পরিণত হয়েছিল।"></p>
+          <p class="tw-scroll" data-tw="আর honestly, এই friendship-টা আমার কাছে সত্যিই special। 🤍"></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5: One Thing -->
+  <section class="panel" data-panel="4">
+    <div class="panel-inner">
+      <div class="glass-card">
+        <p class="card-eyebrow">ONE THING I WANT YOU TO KNOW — 気持ち</p>
+        <div class="bn-text">
+          <p class="tw-scroll" data-tw="জানি না সামনে আমাদের এই friendship কোথায় গিয়ে দাঁড়াবে।"></p>
+          <p class="tw-scroll" data-tw="কিন্তু একটা জিনিস চাই —"></p>
+          <p class="tw-scroll" data-tw="এই হাসি-ঠাট্টা, পাগলামি, random কথাবার্তা আর ছোট ছোট memories যেন এমনভাবেই চলতে থাকে।"></p>
+        </div>
+        <div class="milestone-stack">
+          <p class="milestone-line tw-scroll" data-tw="আজ 100 দিন।"></p>
+          <p class="milestone-line tw-scroll" data-tw="তারপর হয়তো 101..."></p>
+          <p class="milestone-line tw-scroll" data-tw="200..."></p>
+          <p class="milestone-line tw-scroll" data-tw="365..."></p>
+          <p class="milestone-line milestone-line--end tw-scroll" data-tw="∞"></p>
+        </div>
+        <div class="bn-text">
+          <p class="tw-scroll" data-tw="কে জানে? 😄"></p>
+          <p class="tw-scroll" data-tw="তবে আজকের এই ছোট্ব website-টা শুধু একটা website না।"></p>
+          <p class="tw-scroll" data-tw="এটা আমাদের 100 দিনের একটা ছোট্ট memory।"></p>
+          <p class="tw-scroll" data-tw="আর হ্যাঁ..."></p>
+          <p class="thank-line tw-scroll" data-tw="আমার জীবনে আসার জন্য ধন্যবাদ। 🤍"></p>
+        </div>
+      </div>
+
+      <div class="extras">
+        <div class="promise-card-wrap">
+          <div class="promise-card" id="promiseCard">
+            <div class="promise-front">
+              <span class="promise-icon">🎁</span>
+              <p class="promise-label">A Promise For You</p>
+              <p class="promise-hint">Tap to flip — 約束</p>
+            </div>
+            <div class="promise-back">
+              <p class="promise-text tw-scroll" data-tw="I promise to keep texting you random things at 3 AM, to laugh at your jokes even when they're bad, and to always be here — no matter what. 🤍"></p>
+              <p class="promise-sign">— YahiKo</p>
+            </div>
+          </div>
+        </div>
+
+        <button class="surprise-btn" id="surpriseBtn">Tap for a surprise 🎁</button>
+        <p class="surprise-msg" id="surpriseMsg"></p>
+
+        <div class="heart-area">
+          <button class="heart-btn" id="heartBtn" aria-label="Tap the heart">🤍
+            <span class="heart-count" id="heartCount"></span>
+          </button>
+          <div class="heart-progress" id="heartProgress">
+            <span></span><span></span><span></span><span></span><span></span>
+          </div>
+        </div>
+        <p class="hidden-msg" id="hiddenMsg">You found the hidden message. Officially certified: best friendship of the century. 🫶🤍</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6: Final -->
+  <section class="panel" data-panel="5">
+    <div class="panel-inner panel-center">
+      <div class="final-jp">永遠に</div>
+      <p class="final-happy">HAPPY 100 DAYS 🌸</p>
+      <h2 class="final-name">KonaN</h2>
+      <div class="final-divider"><span></span><span>🌸</span><span></span></div>
+      <p class="final-infinity">100 → ∞</p>
+      <p class="final-line tw-scroll" data-tw="Here's to many more random conversations, laughs & memories. 🫶"></p>
+      <p class="final-sign">— YahiKo 🤍</p>
+      <div class="final-heart-wrap">
+        <div class="final-heart" id="finalHeart">🤍</div>
+        <div class="final-heart-ring"></div>
+        <div class="final-heart-ring final-heart-ring--2"></div>
+      </div>
+      <div class="final-sakura-branch">🌸 — 🌸 — 🌸</div>
+      <p class="final-tagline">Made with 🤍 by YahiKo</p>
+    </div>
+  </section>
+
+  </div>
+
+  <div class="scroll-hint" id="scrollHint">
+    <span>Scroll</span>
+    <svg viewBox="0 0 24 24" width="16" height="16" fill="none"><path d="M12 4v16M12 20l-6-6M12 20l6-6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </div>
+  <footer class="site-footer">Made with 🤍 by YahiKo</footer>
+</main>
+
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" id="lightboxClose" aria-label="Close">✕</button>
+  <img id="lightboxImg" alt="">
+  <p class="lightbox-caption" id="lightboxCaption"></p>
+</div>
+<canvas id="confettiCanvas"></canvas>
+<script src="script.js"></script>
+</body>
+</html>
